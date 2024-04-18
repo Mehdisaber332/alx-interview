@@ -5,17 +5,18 @@
 
 
 def canUnlockAll(boxes):
-    total_boxes = len(boxes)
-    setofkeys = [0]
-    counter = 0
-    index = 0
+    """Method that determines if all the boxes can be opened
+        Arg:
+            boxes: Is a list of lists.
+    """
+    box = len(boxes) * [False]
+    box[0] = True
+    keys = [0]
 
-    while index < len(setofkeys):
-        setkey = setofkeys[index]
-        for key in boxes[setkey]:
-            if 0 < key < total_boxes and key not in setofkeys:
-                setofkeys.append(key)
-                counter += 1
-        index += 1
-
-    return counter == total_boxes - 1
+    for each in keys:
+        for i in boxes[each]:
+            if i not in keys:
+                if i < len(boxes):
+                    box[i] = True
+                    keys.append(i)
+    return all(box)
